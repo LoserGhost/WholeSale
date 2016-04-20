@@ -28,7 +28,7 @@ public class Init implements ServletContextListener{
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
-            conn = getSql6115275().getConnection();
+            conn = getWholesale().getConnection();
             sce.getServletContext().setAttribute("connection", conn);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -45,8 +45,10 @@ public class Init implements ServletContextListener{
         }
     }
 
-    private DataSource getSql6115275() throws NamingException {
+    private DataSource getWholesale() throws NamingException {
         Context c = new InitialContext();
-        return (DataSource) c.lookup("java:comp/env/sql6115275");
+        return (DataSource) c.lookup("java:comp/env/wholesale");
     }
+
+    
 }

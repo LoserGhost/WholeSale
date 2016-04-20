@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%-- 
     Document   : find
     Created on : Apr 13, 2016, 11:25:47 PM
@@ -16,8 +18,8 @@
             .center{
                 text-align: center;
             }
-            
-            
+
+
 
             h1{
                 background-color: #666666;
@@ -97,13 +99,13 @@
             a:hover, a:active {
                 background-color: #999999;
             }
-            
+
             input.textbox{
                 width: 80%;
                 margin: 20px;
                 margin-left: 5%;
             }
-            
+
             .window{
                 border: 2px solid black;
                 margin: auto;
@@ -116,24 +118,73 @@
         <title>Home</title>
     </head>
     <body>
+
+        <sql:query var="result" dataSource="wholesale">
+            SELECT * FROM product
+            JOIN product_Group
+            ON (product_group_group_ID = group_ID)
+            WHERE group_name LIKE '%${param.find}%'
+            OR product_Name LIKE '%${param.find}%'
+        </sql:query>
+
+
+
+
+
+
+
+
         <div class="center">
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
-                <a href="find.jsp">ค้นหา</a>
-                <div class="dropdown">
-                    <button class="dropbtn">ใบสั่งซื้อ</button>
-                    <div class="dropdown-content">
-                        <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
-                        <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
-                    </div>
+            <a href="find.jsp">ค้นหา</a>
+            <div class="dropdown">
+                <button class="dropbtn">ใบสั่งซื้อ</button>
+                <div class="dropdown-content">
+                    <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
+                    <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
                 </div>
-                <a href="report.jsp">แจ้งคำร้อง</a>
-                <a href="login.jsp">เข้าสู่ระบบ</a>   <br/><br/><br/>  
+            </div>
+            <a href="report.jsp">แจ้งคำร้อง</a>
+            <c:choose>
+                <c:when test="${sessionScope.loginFlag != true}">
+                    <a href="login.jsp">เข้าสู่ระบบ</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="LogoutController">ออกจากระบบ</a>
+                </c:otherwise>
+            </c:choose>   <br/><br/><br/>  
         </div>
         <div class="window">                   
             <form>
                 <input placeholder="ค้นหา" class="textbox" type="text" name="find"/>
                 <input type="submit" value="ค้นหา"/>
             </form>
+
+            <c:if test="${param.find != null}">
+                <center>
+                    <form action="ViewController">
+                        <table border="1">
+                            <!-- column headers -->
+                            <tr>
+                                <th width="400px"><c:out value="รหัสสินค้า"/></th>
+                                <th width="400px"><c:out value="ชื่อสินค้า"/></th>
+                                <th width="400px"><c:out value="ราคา"/></th>
+                                <th><c:out value="ดูสินค้า"/></th>
+                            </tr>
+                            <!-- column data -->
+                            <c:forEach var="row" items="${result.rows}">
+                                <tr>
+                                    <td><c:out value="${row.product_ID}"/></td>
+                                    <td><c:out value="${row.product_Name}"/></td>
+                                    <td><c:out value="${row.product_Price}"/></td>
+                                    <td><button type="submit" name="view" value="${row.product_ID}">view</button></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                            <input type="hidden" name="find" value="${param.find}"/>
+                    </form>
+                </center>
+            </c:if>
         </div>
     </body>
 </html>

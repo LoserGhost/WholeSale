@@ -135,6 +135,13 @@
         <title>Home</title>
     </head>
     <body>
+        
+        
+        
+        
+        
+        
+        
         <div class="center">
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
 
@@ -153,10 +160,10 @@
         <div class="window">
             <h3 class="center">เข้าสู่ระบบ</h3><br>
             <div class="smallwindow">
-                <form>
-                    <tab/> username: <input class="textbox" type="text" name="username"/><br/>
-                    <tab/> password: <input class="textbox" type="text" name="password"/><br/>
-                    <tab class="left"/> <input type="submit" value="login"/>
+                <form action="LoginController" method="POST">
+                    <tab></tab> username: <input class="textbox" type="text" name="username"/><br/>
+                    <tab></tab> password: <input class="textbox" type="password" name="password"/><br/>
+                    <tab class="left"></tab> <input type="submit" value="login"/>
                 </form>
 
             </div>

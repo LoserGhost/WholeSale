@@ -1,7 +1,8 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
-    Document   : cart
-    Created on : Apr 13, 2016, 11:26:43 PM
+    Document   : main
+    Created on : Apr 13, 2016, 10:52:13 PM
     Author     : LoserGhost
 --%>
 
@@ -96,67 +97,80 @@
             a:hover, a:active {
                 background-color: #999999;
             }
-            
+
+
             .window{
                 border: 2px solid black;
                 margin: auto;
-                background-color: #cccccc;
-                max-width: 1500px;
+                background-color: #e9e9e9;
+                max-width: 1000px;
                 min-width: 500px;
-                min-height: 750px;
-            }
-
-            tab{
-                margin-left: 50px;
-            }
-            tab.left{
-                margin: 70%;
-            }
-            textarea {
-                width:85%;
-                padding: 12px 20px;
-                height: 400px;
-            }
-            
-            .smallwindow{
-                border: 2px solid black;
-                margin: auto;
-                background-color: white;
-                max-width: 1300px;
-                min-width: 400px;
-                min-height: 600px;                
+                min-height: 780px;
             }
         </style>
         <title>Home</title>
     </head>
     <body>
+
+        <sql:query var="result" dataSource="wholesale">
+            SELECT * FROM product
+            JOIN product_Group
+            ON (product_group_group_ID = group_ID)
+            WHERE product_ID = ${param.view}
+        </sql:query>
+
+        <c:forEach var="row" items="${result.rows}">
+            <c:set var="name" value="${row.product_Name}"/>
+            <c:set var="gname" value="${row.group_Name}"/>
+            <c:set var="id" value="${row.product_ID}"/>
+            <c:set var="price" value="${row.product_Price}"/>
+            <c:set var="img" value="${row.img_path}"/>
+        </c:forEach>
+
+
+
+
+
         <div class="center">
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
 
-                <a href="find.jsp">ค้นหา</a>
-                <div class="dropdown">
-                    <button class="dropbtn">ใบสั่งซื้อ</button>
-                    <div class="dropdown-content">
-                        <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
-                        <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
-                    </div>
+            <a href="find.jsp">ค้นหา</a>
+            <div class="dropdown">
+                <button class="dropbtn">ใบสั่งซื้อ</button>
+                <div class="dropdown-content">
+                    <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
+                    <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
                 </div>
-                <a href="report.jsp">แจ้งคำร้อง</a>
-                <c:choose>
+            </div>
+            <a href="report.jsp">แจ้งคำร้อง</a>
+            <c:choose>
                 <c:when test="${sessionScope.loginFlag != true}">
                     <a href="login.jsp">เข้าสู่ระบบ</a>
                 </c:when>
                 <c:otherwise>
                     <a href="LogoutController">ออกจากระบบ</a>
                 </c:otherwise>
-            </c:choose>
+            </c:choose><br/><br/>
 
-        </div><br/><br/>
-        <div class="window">
-            <h2 class="center">รายการที่สั่งซื้อ</h2><br>
-            <div class="smallwindow">
-                
+
+            <div class="window">
+                <h1>${name}</h1><br/><br/><br/>
+
+                <img src="${img}" alt="Fjords" width="300" height="200"><br/><Br/><br/><br/>
+                <form action="AddController">
+                    รหัสสินค้า : ${id} <br/>
+                    ประเภท : ${gname} <br/>
+                    ราคา : ${price} <br/><br/><br/><br/>
+                    <input type="hidden" name="product" value="${id}" />
+                    จำนวน<br/><br/>
+                    <input type="text" name="quntity"/><br/><br/>
+                    <input type="submit" value="เพิ่ม"/><br/><br/>
+                </form>
+                    
+                <a href="find.jsp?find=${param.find}">Go Back</a>
+
             </div>
+
         </div>
     </body>
 </html>

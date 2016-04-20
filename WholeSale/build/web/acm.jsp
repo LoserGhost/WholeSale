@@ -1,6 +1,6 @@
 <%-- 
-    Document   : distributor
-    Created on : Apr 14, 2016, 8:43:35 PM
+    Document   : acm
+    Created on : Apr 20, 2016, 5:21:07 PM
     Author     : LoserGhost
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Distributor</h1>
+        <h1>Account_manager</h1>
     </body>
 </html>

@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : cart
     Created on : Apr 13, 2016, 11:26:43 PM
@@ -141,7 +142,14 @@
                     </div>
                 </div>
                 <a href="report.jsp">แจ้งคำร้อง</a>
-                <a href="login.jsp">เข้าสู่ระบบ</a>
+                <c:choose>
+                <c:when test="${sessionScope.loginFlag != true}">
+                    <a href="login.jsp">เข้าสู่ระบบ</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="LogoutController">ออกจากระบบ</a>
+                </c:otherwise>
+            </c:choose>
 
         </div><br/><br/>
         <div class="window">

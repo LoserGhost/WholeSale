@@ -2,4 +2,5 @@
 <Context path="/WholeSale">
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="mydb" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/mydb?zeroDateTimeBehavior=convertToNull" username="root"/>
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="sql6115275" password="UhuV8HSNuY" type="javax.sql.DataSource" url="jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6115275?zeroDateTimeBehavior=convertToNull" username="sql6115275"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="wholesale" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/wholesale?zeroDateTimeBehavior=convertToNull" username="root"/>
 </Context>
