@@ -150,11 +150,11 @@
 
         </div>        <br/><br/>
         <div class="window">                   
-            <form>
+            <form action="ReportController">
                 <h2 style="text-align: center;">สร้างคำร้อง</h2>
-                <tab/> หัวข้อ: <input placeholder="หัวข้อ" class="textbox" type="text" name="content"/><br/><br/>
-                <tab/> <tab/><textarea name="text" rows="5" cols="20"></textarea><br/><br/><br/><br/>
-                <tab class="left"/>
+                <tab></tab> หัวข้อ: <input placeholder="หัวข้อ" class="textbox" type="text" name="content"/><br/><br/>
+                <tab></tab> <tab></tab><textarea name="text" rows="5" cols="20"></textarea><br/><br/><br/><br/>
+                <tab class="left"/></tab>
                 ผู้รับ:
                 <select name="reciver">
                     <option>Company</option>

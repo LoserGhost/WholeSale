@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : cart
@@ -16,6 +17,16 @@
             }
             .center{
                 text-align: center;
+            }
+            .center2{
+                margin-left: 10%;
+                margin-right: 10%;
+                margin-top: 10px;
+            }
+            .right{
+                margin-left: 65%;
+                margin-right: 10%;
+
             }
 
             h1{
@@ -96,7 +107,7 @@
             a:hover, a:active {
                 background-color: #999999;
             }
-            
+
             .window{
                 border: 2px solid black;
                 margin: auto;
@@ -117,7 +128,7 @@
                 padding: 12px 20px;
                 height: 400px;
             }
-            
+
             .smallwindow{
                 border: 2px solid black;
                 margin: auto;
@@ -130,19 +141,20 @@
         <title>Home</title>
     </head>
     <body>
+
         <div class="center">
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
 
-                <a href="find.jsp">ค้นหา</a>
-                <div class="dropdown">
-                    <button class="dropbtn">ใบสั่งซื้อ</button>
-                    <div class="dropdown-content">
-                        <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
-                        <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
-                    </div>
+            <a href="find.jsp">ค้นหา</a>
+            <div class="dropdown">
+                <button class="dropbtn">ใบสั่งซื้อ</button>
+                <div class="dropdown-content">
+                    <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
+                    <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
                 </div>
-                <a href="report.jsp">แจ้งคำร้อง</a>
-                <c:choose>
+            </div>
+            <a href="report.jsp">แจ้งคำร้อง</a>
+            <c:choose>
                 <c:when test="${sessionScope.loginFlag != true}">
                     <a href="login.jsp">เข้าสู่ระบบ</a>
                 </c:when>
@@ -155,7 +167,44 @@
         <div class="window">
             <h2 class="center">รายการที่สั่งซื้อ</h2><br>
             <div class="smallwindow">
-                
+                <div class="center2">
+                    <table border="1" cellpadding="2">
+                        <thead>
+                            <tr>
+                                <th width="250">รหัสสินค้า</th>
+                                <th width="250">ชื่อสินค้า</th>
+                                <th width="250">จำนวน</th>
+                                <th width="250">ราคา</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/><br/>
+
+                </div>
+                <div class="right">
+                    <table border="1" cellpadding="2">
+                        <thead>
+                            <tr>
+                                <th width="150" style="background-color: #3399ff">ยอดรวม</th>
+                                <th width="150"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div><br/><br/><br/>
+                <div>
+                    <a href="find.jsp" style="background-color: #3399ff; margin-left: 10%; text-align: center">ค้นหาสินค้า</a>
+                    <a href="paid.jsp" style="background-color: #3399ff; margin-left: 30%;margin-right: 10%; text-align: center">ชำระเงิน</a>
+                </div>
             </div>
         </div>
     </body>

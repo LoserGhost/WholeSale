@@ -17,6 +17,16 @@
             .center{
                 text-align: center;
             }
+            .center2{
+                margin-left: 10%;
+                margin-right: 10%;
+                margin-top: 10px;
+            }
+            .right{
+                margin-left: 65%;
+                margin-right: 10%;
+
+            }
 
             h1{
                 background-color: #666666;
@@ -126,6 +136,16 @@
                 min-width: 400px;
                 min-height: 600px;                
             }
+            input.textbox{
+                margin: 20px;
+                height: 30px;
+                width:85%;
+            }
+            textarea {
+                width:90%;
+                padding: 12px 20px;
+                height: 190px;
+            }
         </style>
         <title>Home</title>
     </head>
@@ -156,6 +176,27 @@
         <div class="window">
             <h2 class="center">ชำระเงิน</h2><br>
             <div class="smallwindow">
+                <div class="center2">
+                    ชื่อ : <input class="textbox" type="text" name="name" value="ออโต้เจเนอร์เรต"/><br/><br/>
+                    ที่อยู่ : <br/><br/><textarea name="text" rows="5" cols="20">ออโต้เจเนอร์เรต</textarea><br/><br/><br/>
+
+                </div>
+                <div class="right">
+                    <table border="1" cellpadding="2">
+                        <thead>
+                            <tr>
+                                <th width="150" style="background-color: #3399ff">ยอดรวม</th>
+                                <th width="150"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div><br/><br/><br/>
+                <div>
+                    <a href="main.jsp" style="background-color: #3399ff; margin-left: 10%; text-align: center">ยกเลิก</a>
+                    <a href="PaidController" style="background-color: #3399ff; margin-left: 30%;margin-right: 10%; text-align: center">ตกลง</a>
+                </div>
                 
             </div>
         </div>

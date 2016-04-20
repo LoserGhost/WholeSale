@@ -156,7 +156,7 @@
             <div class="window">
                 <h1>${name}</h1><br/><br/><br/>
 
-                <img src="${img}" alt="Fjords" width="300" height="200"><br/><Br/><br/><br/>
+                <img src="${img}" alt="ไม่พบรูปภาพ" width="300" height="200"><br/><Br/><br/><br/>
                 <form action="AddController">
                     รหัสสินค้า : ${id} <br/>
                     ประเภท : ${gname} <br/>

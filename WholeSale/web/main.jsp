@@ -101,6 +101,7 @@
     </head>
     <body>
         <div class="center">
+            <c:set scope="session" value="1" var="userID"/>
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
 
                 <a href="find.jsp">ค้นหา</a>

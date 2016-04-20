@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/distributor.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/product_detail.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/find.jsp</file>
             <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/LoginController.java</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/login/LoginUtilities.java</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/nbproject/build-impl.xml</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/WEB-INF/web.xml</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/login.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/acm.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/paid.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/cart.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/report.jsp</file>
             <file>file:/D:/GitHub/WholeSale/WholeSale/web/main.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/login/Login.java</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/index.html</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/listener/Init.java</file>
             <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/filter/loginFilter.java</file>
         </group>
     </open-files>
