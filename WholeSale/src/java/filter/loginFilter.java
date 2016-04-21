@@ -106,8 +106,7 @@ public class loginFilter implements Filter {
         
         doBeforeProcessing(request, response);
         
-        
-        Boolean flag = (Boolean) ((HttpServletRequest)request).getSession().getAttribute("loginFlag");
+         Boolean flag = (Boolean) ((HttpServletRequest)request).getSession().getAttribute("loginFlag");
         boolean loginFlag;
         if (flag == null) {
             ((HttpServletResponse)response).sendRedirect("login.jsp");
@@ -119,6 +118,7 @@ public class loginFilter implements Filter {
         if (!loginFlag) {
             ((HttpServletResponse)response).sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
+        
         
         Throwable problem = null;
         try {

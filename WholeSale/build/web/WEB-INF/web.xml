@@ -6,6 +6,18 @@
     </filter>
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
+        <url-pattern>/report.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/cart.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/paid.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
         <url-pattern>*.do</url-pattern>
     </filter-mapping>
     <listener>

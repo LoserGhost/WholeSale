@@ -41,6 +41,7 @@ public class LoginController extends HttpServlet {
 
         boolean loginFlag = true;
         
+        request.getSession().setAttribute("accountID", logUtilities.getID(login));
         request.getSession().setAttribute("username", user);
         request.getSession().setAttribute("loginFlag", loginFlag);
 

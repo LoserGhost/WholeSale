@@ -65,4 +65,26 @@ public class LoginUtilities {
             return "login.jsp";
         }
     }
+    
+    public String getID(Login login){
+        String username = login.getUsername();
+        String password = login.getPassword();
+        String role;
+        try{
+            pstmt=conn.prepareStatement("select * from Account where username=? AND password=?" );
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                return rs.getString("account_ID");
+                
+            }else{
+                Exception notFound = new Exception("Invalid username or password");
+                throw notFound;
+            }           
+            
+        }catch(Exception e){
+            return "";
+        }
+    }
 }
