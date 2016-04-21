@@ -162,8 +162,9 @@
                     ประเภท : ${gname} <br/>
                     ราคา : ${price} <br/><br/><br/><br/>
                     <input type="hidden" name="product" value="${id}" />
+                    <input type="hidden" name="order" value="${sessionScope.orderID}" />
                     จำนวน<br/><br/>
-                    <input type="text" name="quntity"/><br/><br/>
+                    <input type="text" name="quantity"/><br/><br/>
                     <input type="submit" value="เพิ่ม"/><br/><br/>
                 </form>
                     

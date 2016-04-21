@@ -19,34 +19,29 @@ import model.Order;
  *
  * @author LoserGhost
  */
-@WebServlet(name = "AddController", urlPatterns = {"/Add.do"})
-public class AddController extends HttpServlet {
+@WebServlet(name = "RemoveController", urlPatterns = {"/RemoveController"})
+public class RemoveController extends HttpServlet {
 
     private CartUtilities cartUtilities = new CartUtilities();
     private Order order = new Order();
-
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         cartUtilities.init();
 
-        String productid = request.getParameter("product");
-        String orderid = request.getParameter("order");
-        String quantity = request.getParameter("quantity");
-
+        String productid = request.getParameter("remove");
+        String orderid = (String) request.getSession().getAttribute("orderID");
+        
         order.setProductID(productid);
         order.setOrderID(orderid);
-        try {
-            order.setQuantity(Integer.parseInt(quantity));
-        } catch (Exception ex) {
-            order.setQuantity(1);
-        }
         
-        cartUtilities.insertItem(order);
+        cartUtilities.removeItem(order);
         
         response.sendRedirect("cart.jsp");
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

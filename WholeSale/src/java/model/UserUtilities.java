@@ -20,14 +20,14 @@ import login.LoginUtilities;
  *
  * @author LoserGhost
  */
-public class CartUtilities {
+public class UserUtilities {
 
     Connection conn;
     Statement stmt;
     PreparedStatement pstmt;
     ResultSet rs;
 
-    public CartUtilities() {
+    public UserUtilities() {
     }
 
     public void init() {
@@ -44,35 +44,38 @@ public class CartUtilities {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public void insertItem(Order order) {
-        String sqlCmd = "INSERT INTO order_has_product VALUES('" + order.getOrderID() + "','"
-                + order.getProductID() + "','"
-                + order.getQuantity() + "')";
+    
+    public void updateName(Customer customer) {
+        String sqlCmd = "UPDATE customer SET cus_name = '" + customer.getCus_Name()
+                + "' WHERE cus_id = '" + customer.getCus_ID() + "'";
         try {
             stmt.executeUpdate(sqlCmd);
 
-        } catch (SQLException ex) {
-            sqlCmd = "UPDATE order_has_product SET quantity ='" + order.getQuantity() + 
-                    "' WHERE order_order_id = '" + order.getOrderID() +
-                    "' AND product_product_id = '" + order.getProductID() + "'";
-            try {
-                stmt.executeUpdate(sqlCmd);
-
-            } catch (SQLException e) {
-                Logger.getLogger(CartUtilities.class.getName()).log(Level.SEVERE, null, e);
-            }
+        } catch (SQLException e) {
+            Logger.getLogger(CartUtilities.class.getName()).log(Level.SEVERE, null, e);
         }
-
     }
-
-    public void removeItem(Order order) {
-        String sqlCmd = "DELETE FROM order_has_product WHERE order_order_id = '" + order.getOrderID() +
-                    "' AND product_product_id = '" + order.getProductID() + "'";
+    
+    public void updateLocation(Branch branch) {
+        String sqlCmd = "UPDATE branch SET location = '" + branch.getBranch_Location()
+                + "' WHERE branch_id = '" + branch.getBranch_ID() + "'";
         try {
             stmt.executeUpdate(sqlCmd);
-        } catch (SQLException ex) {
-            Logger.getLogger(CartUtilities.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (SQLException e) {
+            Logger.getLogger(CartUtilities.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+
+    public void updatePayment(Account account) {
+        String sqlCmd = "UPDATE account SET payment = '" + account.getPayment()
+                + "' WHERE account_id = '" + account.getAccount_ID() + "'";
+        try {
+            stmt.executeUpdate(sqlCmd);
+
+        } catch (SQLException e) {
+            Logger.getLogger(CartUtilities.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
 }

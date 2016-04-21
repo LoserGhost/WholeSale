@@ -141,6 +141,17 @@
         <title>Home</title>
     </head>
     <body>
+        <sql:query var="result" dataSource="wholesale">
+            SELECT quantity, product_id, product_name, product_price FROM sale_order
+            JOIN order_has_product
+            ON (order_id = order_order_id)            
+            JOIN product
+            ON (product_id = product_product_id)
+            WHERE Account_account_ID = ${sessionScope.accountID} 
+            AND status LIKE 'inprogress'
+        </sql:query>
+
+        <c:set var="total" value="0"/>
 
         <div class="center">
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
@@ -167,25 +178,28 @@
         <div class="window">
             <h2 class="center">รายการที่สั่งซื้อ</h2><br>
             <div class="smallwindow">
-                <div class="center2">
-                    <table border="1" cellpadding="2">
-                        <thead>
+                <div class="center2"><br/>
+
+                    <form action="RemoveController">
+                        <table border="1" cellpadding="2">
                             <tr>
                                 <th width="250">รหัสสินค้า</th>
                                 <th width="250">ชื่อสินค้า</th>
                                 <th width="250">จำนวน</th>
                                 <th width="250">ราคา</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <c:forEach var="cart" items="${result.rows}">
+                                <tr>
+                                    <td><c:out value="${cart.product_id}"/></td>
+                                    <td><c:out value="${cart.product_name}"/></td>
+                                    <td><c:out value="${cart.quantity}"/></td>
+                                    <td><c:out value="${cart.product_price * cart.quantity}"/></td>
+                                    <td><button type="submit" value="${cart.product_id}" name="remove">remove</button></td>
+                                </tr>
+                                <c:set var="total" value="${total + cart.product_price * cart.quantity}"/>
+                            </c:forEach>
+                        </table>
+                    </form>
                     <br/><br/>
 
                 </div>
@@ -194,7 +208,7 @@
                         <thead>
                             <tr>
                                 <th width="150" style="background-color: #3399ff">ยอดรวม</th>
-                                <th width="150"></th>
+                                <th width="150">${total}</th>
                             </tr>
                         </thead>
                         <tbody>

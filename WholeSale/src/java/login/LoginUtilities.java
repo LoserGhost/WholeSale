@@ -20,17 +20,19 @@ import java.util.logging.Logger;
  * @author LoserGhost
  */
 public class LoginUtilities {
+
     Connection conn;
     Statement stmt;
     PreparedStatement pstmt;
     ResultSet rs;
-    public void init(){
+
+    public void init() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/wholesale";
             String user = "root";
             String pwd = "root";
-            conn = DriverManager.getConnection(url,user,pwd);
+            conn = DriverManager.getConnection(url, user, pwd);
             stmt = conn.createStatement();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginUtilities.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,52 +40,74 @@ public class LoginUtilities {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public String goLogin(Login login){
+
+    public String goLogin(Login login) {
         String username = login.getUsername();
         String password = login.getPassword();
         String role;
-        try{
-            pstmt=conn.prepareStatement("select * from Account where username=? AND password=?" );
+        try {
+            pstmt = conn.prepareStatement("select * from Account where username=? AND password=?");
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            rs=pstmt.executeQuery();
-            if(rs.next()){
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
                 role = rs.getString("role");
-                if(role.equals("dist")){
+                if (role.equals("dist")) {
                     return "distributor.jsp";
-                } else if(role.equals("ac")){
+                } else if (role.equals("ac")) {
                     return "acm.jsp";
                 }
                 return "main.jsp";
-            }else{
+            } else {
                 Exception notFound = new Exception("Invalid username or password");
                 throw notFound;
             }
-            
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             return "login.jsp";
         }
     }
-    
-    public String getID(Login login){
+
+    public String getID(Login login) {
         String username = login.getUsername();
         String password = login.getPassword();
         String role;
-        try{
-            pstmt=conn.prepareStatement("select * from Account where username=? AND password=?" );
+        try {
+            pstmt = conn.prepareStatement("select * from Account where username=? AND password=?");
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            rs=pstmt.executeQuery();
-            if(rs.next()){
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
                 return rs.getString("account_ID");
-                
-            }else{
+
+            } else {
                 Exception notFound = new Exception("Invalid username or password");
                 throw notFound;
-            }           
-            
-        }catch(Exception e){
+            }
+
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public String getOrderID(String account) {
+
+        try {
+            pstmt = conn.prepareStatement("select * from sale_order where account_account_id=? AND status LIKE 'inprogress' ");
+            pstmt.setString(1, account);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("order_id");
+
+            } else {
+               String sqlCmd = "insert into sale_order(account_account_id) value("+Integer.parseInt(account)+") ";
+               stmt.executeUpdate(sqlCmd);
+                
+                return getOrderID(account);
+                
+            }
+
+        } catch (Exception e) {
             return "";
         }
     }

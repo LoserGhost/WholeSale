@@ -115,7 +115,7 @@
                 margin-left: 50px;
             }
             tab.left{
-                margin: 20%;
+                margin-left: 20%;
             }
             textarea {
                 width:85%;
@@ -129,7 +129,7 @@
                 background-color: white;
                 max-width: 850px;
                 min-width: 200px;
-                height: 210px;                
+                height: 220px;                
             }
         </style>
         <title>Home</title>
@@ -164,6 +164,9 @@
                     <tab></tab> username: <input class="textbox" type="text" name="username"/><br/>
                     <tab></tab> password: <input class="textbox" type="password" name="password"/><br/>
                     <tab class="left"></tab> <input type="submit" value="login"/>
+                </form>
+                <form action="register.jsp">
+                    <tab></tab><input type="submit" value="สมัครสมาชิก" />
                 </form>
 
             </div>

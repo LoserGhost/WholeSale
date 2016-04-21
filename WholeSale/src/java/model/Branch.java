@@ -10,23 +10,36 @@ package model;
  * @author LoserGhost
  */
 public class Branch {
+
     private String branch_ID;
     private String branch_Name;
     private String branch_Location;
-    
-    private void addBranch(){
-        
+
+    public Branch() {
     }
-    
-    private void deleteBranch(){
-        
+
+    public String getBranch_ID() {
+        return branch_ID;
     }
-    
-    private void editBranch(){
-        
+
+    public void setBranch_ID(String branch_ID) {
+        this.branch_ID = branch_ID;
     }
-    
-    private String getBranch(){
-        return branch_ID+","+branch_Name+","+branch_Location;
+
+    public String getBranch_Name() {
+        return branch_Name;
     }
+
+    public void setBranch_Name(String branch_Name) {
+        this.branch_Name = branch_Name;
+    }
+
+    public String getBranch_Location() {
+        return branch_Location;
+    }
+
+    public void setBranch_Location(String branch_Location) {
+        this.branch_Location = branch_Location;
+    }
+
 }

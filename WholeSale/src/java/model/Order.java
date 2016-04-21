@@ -10,8 +10,35 @@ package model;
  * @author LoserGhost
  */
 public class Order {
-    private String order_ID;
-    private String order_Date;
-    private String order_Total;
+    private String orderID;
+    private String productID;
+    private int quantity;
+
+    public Order() {
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
     
 }

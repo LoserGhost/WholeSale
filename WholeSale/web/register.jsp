@@ -1,8 +1,7 @@
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
-    Document   : main
-    Created on : Apr 13, 2016, 10:52:13 PM
+    Document   : register
+    Created on : Apr 21, 2016, 7:07:05 PM
     Author     : LoserGhost
 --%>
 
@@ -97,80 +96,25 @@
             a:hover, a:active {
                 background-color: #999999;
             }
-
-
-            .window{
-                border: 2px solid black;
-                margin: auto;
-                background-color: #e9e9e9;
-                max-width: 1000px;
-                min-width: 500px;
-                min-height: 780px;
-            }
         </style>
         <title>Home</title>
     </head>
     <body>
-
-        <sql:query var="result" dataSource="wholesale">
-            SELECT * FROM product
-            JOIN product_Group
-            ON (product_group_group_ID = group_ID)
-            WHERE product_ID = ${param.view}
-        </sql:query>
-
-        <c:forEach var="row" items="${result.rows}">
-            <c:set var="name" value="${row.product_Name}"/>
-            <c:set var="gname" value="${row.group_Name}"/>
-            <c:set var="id" value="${row.product_ID}"/>
-            <c:set var="price" value="${row.product_Price}"/>
-            <c:set var="img" value="${row.img_path}"/>
-        </c:forEach>
-
-
-
-
-
         <div class="center">
+            <c:set scope="session" value="1" var="userID"/>
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
 
-            <a href="find.jsp">ค้นหา</a>
-            <div class="dropdown">
-                <button class="dropbtn">ใบสั่งซื้อ</button>
-                <div class="dropdown-content">
-                    <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
-                    <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
+                <a href="find.jsp">ค้นหา</a>
+                <div class="dropdown">
+                    <button class="dropbtn">ใบสั่งซื้อ</button>
+                    <div class="dropdown-content">
+                        <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
+                        <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
+                    </div>
                 </div>
-            </div>
-            <a href="report.jsp">แจ้งคำร้อง</a>
-            <c:choose>
-                <c:when test="${sessionScope.loginFlag != true}">
-                    <a href="login.jsp">เข้าสู่ระบบ</a>
-                </c:when>
-                <c:otherwise>
-                    <a href="LogoutController">ออกจากระบบ</a>
-                </c:otherwise>
-            </c:choose><br/><br/>
-
-
-            <div class="window">
-                <h1>${name}</h1><br/><br/><br/>
-
-                <img src="${img}" alt="ไม่พบรูปภาพ" width="300" height="200"><br/><Br/><br/><br/>
-                <form action="Add.do">
-                    รหัสสินค้า : ${id} <br/>
-                    ประเภท : ${gname} <br/>
-                    ราคา : ${price} <br/><br/><br/><br/>
-                    <input type="hidden" name="product" value="${id}" />
-                    <input type="hidden" name="order" value="${sessionScope.orderID}" />
-                    จำนวน<br/><br/>
-                    <input type="text" name="quantity"/><br/><br/>
-                    <input type="submit" value="เพิ่ม"/><br/><br/>
-                </form>
-                    
-                <a href="find.jsp?find=${param.find}">Go Back</a>
-
-            </div>
+                <a href="report.jsp">แจ้งคำร้อง</a>
+                
+                <a href="login.jsp">เข้าสู่ระบบ</a>
 
         </div>
     </body>

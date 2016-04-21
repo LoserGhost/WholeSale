@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : paid
@@ -106,7 +107,7 @@
             a:hover, a:active {
                 background-color: #999999;
             }
-            
+
             .window{
                 border: 2px solid black;
                 margin: auto;
@@ -127,7 +128,7 @@
                 padding: 12px 20px;
                 height: 400px;
             }
-            
+
             .smallwindow{
                 border: 2px solid black;
                 margin: auto;
@@ -150,18 +151,61 @@
         <title>Home</title>
     </head>
     <body>
+
+        <sql:query var="pay" dataSource="wholesale">
+            SELECT payment_method FROM account
+            WHERE account_id = ${sessionScope.accountID}
+        </sql:query>
+
+        <sql:query var="user" dataSource="wholesale">
+            SELECT cus_id, cus_Name, branch_location ,branch_id FROM customer
+            JOIN branch
+            ON (cus_id = Customer_cus_id)
+            WHERE account_account_id= ${sessionScope.accountID} 
+        </sql:query>
+
+        <sql:query var="result" dataSource="wholesale">
+            SELECT quantity , product_price FROM sale_order
+            JOIN order_has_product
+            ON (order_id = order_order_id)            
+            JOIN product
+            ON (product_id = product_product_id)
+            WHERE Account_account_ID = ${sessionScope.accountID} 
+            AND status LIKE 'inprogress'
+        </sql:query>
+
+        <c:set var="total" value="0"/>
+
+        <c:forEach var="cart" items="${result.rows}">
+            <c:set var="total" value="${total + cart.product_price * cart.quantity}"/>
+        </c:forEach>
+
+        <c:forEach var="row" items="${pay.rows}">
+            <c:set var="method" value="${row.payment_method}"/>
+        </c:forEach>
+
+        <c:forEach var="row" items="${user.rows}">
+            <c:set var="cusid" value="${row.cus_id}"/>
+            <c:set var="cusname" value="${row.cus_Name}"/>
+            <c:set var="location" value="${row.branch_location}"/>
+            <c:set var="branch" value="${row.branch_id}"/>
+        </c:forEach>
+
+
+
+
         <div class="center">
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
 
-                <a href="find.jsp">ค้นหา</a>
-                <div class="dropdown">
-                    <button class="dropbtn">ใบสั่งซื้อ</button>
-                    <div class="dropdown-content">
-                        <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
-                        <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
-                    </div>
+            <a href="find.jsp">ค้นหา</a>
+            <div class="dropdown">
+                <button class="dropbtn">ใบสั่งซื้อ</button>
+                <div class="dropdown-content">
+                    <a href="cart.jsp" style="background-color: #cccccc">ดูรายการ</a>
+                    <a href="paid.jsp" style="background-color: #f1f1f1">ชำระเงิน</a>
                 </div>
-                <a href="report.jsp">แจ้งคำร้อง</a>
+            </div>
+            <a href="report.jsp">แจ้งคำร้อง</a>
 
             <c:choose>
                 <c:when test="${sessionScope.loginFlag != true}">
@@ -176,28 +220,48 @@
         <div class="window">
             <h2 class="center">ชำระเงิน</h2><br>
             <div class="smallwindow">
-                <div class="center2">
-                    ชื่อ : <input class="textbox" type="text" name="name" value="ออโต้เจเนอร์เรต"/><br/><br/>
-                    ที่อยู่ : <br/><br/><textarea name="text" rows="5" cols="20">ออโต้เจเนอร์เรต</textarea><br/><br/><br/>
+                
+                
+                
+                <form>
+                    <div class="center2">
+                        ชื่อ : <input class="textbox" type="text" name="name" value="${cusname}"/><br/><br/>
+                        ที่อยู่ : <br/><br/><textarea name="location" rows="5" cols="20">${location}</textarea><br/><br/>
+                        ช่องทางชำระเงิน : 
+                        <c:choose>
+                            <c:when test="${method != null}">
+                                <input type="text" name="payment" value="${method}"/>
+                            </c:when>
+                            <c:otherwise>
+                                <input type="text" name="payment" value="ไม่พบช่องทางชำระเงิน"/>
+                            </c:otherwise>                        
+                        </c:choose>
 
-                </div>
+                        <input type="submit" value="อัพเดทข้อมูล" /> *อัพเดทข้อมูลชื่อ ที่อยู่ และช่องทางชำระเงิน
+                    </div>
+                        <input type="hidden" name="branch" value="${branch}"/>
+                        <input type="hidden" name="cusid" value="${cusid}"/>
+                </form>
                 <div class="right">
                     <table border="1" cellpadding="2">
                         <thead>
                             <tr>
                                 <th width="150" style="background-color: #3399ff">ยอดรวม</th>
-                                <th width="150"></th>
+                                <th width="150">${total}</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
                 </div><br/><br/><br/>
+
+                <c:set var="totalPrice" scope="session" value="${total}" />
+
                 <div>
                     <a href="main.jsp" style="background-color: #3399ff; margin-left: 10%; text-align: center">ยกเลิก</a>
                     <a href="PaidController" style="background-color: #3399ff; margin-left: 30%;margin-right: 10%; text-align: center">ตกลง</a>
                 </div>
-                
+
             </div>
         </div>
     </body>

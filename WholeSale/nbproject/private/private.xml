@@ -3,21 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/find.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/distributor.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/model/Branch.java</file>
             <file>file:/D:/GitHub/WholeSale/WholeSale/web/paid.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/login/LoginUtilities.java</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/cart.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/acm.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/listener/Init.java</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/filter/loginFilter.java</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/product_detail.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/LoginController.java</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/WEB-INF/web.xml</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/RemoveController.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/model/Customer.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/model/UserUtilities.java</file>
             <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/model/CartUtilities.java</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/report.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/web/main.jsp</file>
-            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/login/Login.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/cart.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/model/Account.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/AddController.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/UpdateController.java</file>
         </group>
     </open-files>
 </project-private>

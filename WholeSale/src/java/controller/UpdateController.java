@@ -12,41 +12,56 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.CartUtilities;
-import model.Order;
+import model.Account;
+import model.Branch;
+import model.Customer;
+import model.UserUtilities;
 
 /**
  *
  * @author LoserGhost
  */
-@WebServlet(name = "AddController", urlPatterns = {"/Add.do"})
-public class AddController extends HttpServlet {
+@WebServlet(name = "UpdateController", urlPatterns = {"/UpdateController"})
+public class UpdateController extends HttpServlet {
 
-    private CartUtilities cartUtilities = new CartUtilities();
-    private Order order = new Order();
-
+    private UserUtilities userUtilities = new UserUtilities();
+    private Account account = new Account();
+    private Customer customer = new Customer();
+    private Branch branch = new Branch();
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        cartUtilities.init();
-
-        String productid = request.getParameter("product");
-        String orderid = request.getParameter("order");
-        String quantity = request.getParameter("quantity");
-
-        order.setProductID(productid);
-        order.setOrderID(orderid);
-        try {
-            order.setQuantity(Integer.parseInt(quantity));
-        } catch (Exception ex) {
-            order.setQuantity(1);
-        }
         
-        cartUtilities.insertItem(order);
         
-        response.sendRedirect("cart.jsp");
-
+        request.setCharacterEncoding("UTF-8");
+        
+        
+        String payment = request.getParameter("payment");
+        String accountid = (String) request.getSession().getAttribute("accountID");
+        
+        String location = request.getParameter("location");
+        String branchid = request.getParameter("branch");
+        
+        String cusname = request.getParameter("name");
+        String cusid = request.getParameter("cusid");
+        
+        account.setAccount_ID(accountid);
+        account.setPayment(payment);
+        
+        branch.setBranch_Location(location);
+        branch.setBranch_ID(branchid);
+        
+        customer.setCus_Name(cusname);
+        customer.setCus_ID(cusid);
+        
+        userUtilities.updateName(customer);
+        userUtilities.updateLocation(branch);
+        userUtilities.updatePayment(account);
+        
+        response.sendRedirect("paid.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
