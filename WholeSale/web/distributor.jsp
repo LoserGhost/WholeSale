@@ -114,7 +114,7 @@
         </sql:query>
 
         <sql:query var="result2" dataSource="wholesale">
-            SELECT * FROM sale_order
+            SELECT order_id,account_account_id, status FROM sale_order
             WHERE status LIKE 'pending'
         </sql:query>
 
@@ -140,7 +140,28 @@
 
             <c:if test="${param.link eq 'view'}">
                 <div class="window">
-                    <h2 style="text-align: center;">ใบสั่งซื้อ</h2>        
+                    <h2 style="text-align: center;">ใบสั่งซื้อ</h2>  
+                    <form action="ViewOrder">
+                        <table border="1" style="margin: auto">
+                            <!-- column headers -->
+                            <tr>
+                                <c:forEach var="columnName" items="${result2.columnNames}">
+                                    <th><c:out value="${columnName}"/></th>
+                                    </c:forEach>
+                            </tr>
+                            <!-- column data -->
+                            <c:forEach var="row" items="${result2.rows}">
+                                <tr>
+                                    <td><c:out value="${row.order_id}"/></td>
+                                    <td><c:out value="${row.account_account_id}"/></td>
+                                    <td><c:out value="${row.status}"/></td>
+                                    <td><button type="submit" name='id' value="${row.order_id}">view</button></td>
+                                </tr>
+
+                                <input type="hidden" name="who" value="dist"/>
+                            </c:forEach>
+                        </table>
+                    </form>
                 </div>
             </c:if>
 

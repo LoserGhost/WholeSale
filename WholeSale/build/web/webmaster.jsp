@@ -110,7 +110,7 @@
     </head>
     <body>        
         <sql:query var="result" dataSource="wholesale">
-            SELECT report_id,account_id,content  FROM report WHERE receiver LIKE 'Webmaster'
+            SELECT report_id,account_id,content  FROM report WHERE receiver LIKE 'WebMaster'
         </sql:query>
 
 

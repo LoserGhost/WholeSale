@@ -1,6 +1,8 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
-    Document   : acm
-    Created on : Apr 20, 2016, 5:21:07 PM
+    Document   : distributor
+    Created on : Apr 14, 2016, 8:43:35 PM
     Author     : LoserGhost
 --%>
 
@@ -44,7 +46,7 @@
 
             /* The container <div> - needed to position the dropdown content */
             .dropdown {
-                min-width: 24.75%;
+                min-width: 49.75%;
                 position: relative;
                 display: inline-block;
                 margin: 0;
@@ -95,16 +97,106 @@
             a:hover, a:active {
                 background-color: #999999;
             }
+            .window{
+                border: 2px solid black;
+                margin: auto;
+                background-color: #ffffff;
+                max-width: 1500px;
+                min-width: 500px;
+                min-height: 750px;
+            }
         </style>
         <title>Home</title>
     </head>
-    <body>
+    <body>        
+        <sql:query var="result" dataSource="wholesale">
+            SELECT report_id,account_id,content  FROM report WHERE receiver LIKE 'Company'
+        </sql:query>
+
+        <sql:query var="result2" dataSource="wholesale">
+            SELECT order_id,account_account_id, status FROM sale_order
+            WHERE status LIKE 'approved'
+        </sql:query>
+
+        <sql:query var="result3" dataSource="wholesale">
+            SELECT sum(quantity * product_price)  FROM sale_order
+            JOIN order_has_product
+            ON (order_id = order_order_id)
+            JOIN product
+            ON (product_id = product_product_id)
+            WHERE status = 'approved'
+        </sql:query>
+
+
+
+
+
+
+
         <div class="center">
             <c:set scope="session" value="1" var="userID"/>
             <h1>ระบบขายส่งสินค้าประเภทเครื่องเขียน</h1>
 
-                <a href="find.jsp">ดูยอดขาย</a>
-                <a href="LogoutController">ออกจากระบบ</a>
+            <div class="dropdown">
+                <button class="dropbtn">เมนู</button>
+                <div class="dropdown-content">
+                    <a href="acm.jsp?link=view" style="background-color: #cccccc">ดูสถานะของผู้สั่งซื้อ</a>
+                    <a href="acm.jsp?link=report" style="background-color: #f1f1f1">เปรียบเทียบยอดขาย</a>
+                </div>
+            </div>
+
+            <a href="LogoutController">ออกจากระบบ</a><br/><br/>
+
+            <c:if test="${param.link eq 'view'}">
+                <div class="window">
+                    <h2 style="text-align: center;">ใบสั่งซื้อ</h2>  
+                    <form action="ViewOrder">
+                        <table border="1" style="margin: auto">
+                            <!-- column headers -->
+                            <tr>
+                                <c:forEach var="columnName" items="${result2.columnNames}">
+                                    <th><c:out value="${columnName}"/></th>
+                                    </c:forEach>
+                            </tr>
+                            <!-- column data -->
+                            <c:forEach var="row" items="${result2.rows}">
+                                <tr>
+                                    <td><c:out value="${row.order_id}"/></td>
+                                    <td><c:out value="${row.account_account_id}"/></td>
+                                    <td><c:out value="${row.status}"/></td>
+                                    <td><button type="submit" name='id' value="${row.order_id}">view</button></td>
+                                </tr>
+
+                                <input type="hidden" name="who" value="acm"/>
+                            </c:forEach>
+                        </table>
+                    </form>
+                </div>
+            </c:if>
+
+
+            <c:if test="${param.link eq 'report'}">
+                <div class="window">
+                    <h2 style="text-align: center;">ยอดขายทั้งหมด</h2>
+
+                    <table border="1" style="margin: auto">
+                        <!-- column headers -->
+                        <tr>
+                            <th><c:out value="ยอดขายรวมทั้งหมด"/></th>
+                        </tr>
+                        <!-- column data -->
+                        <c:forEach var="row" items="${result3.rowsByIndex}">
+                            <tr>
+                                <c:forEach var="column" items="${row}">
+                                    <td><c:out value="${column}"/></td>
+                                </c:forEach>
+                            </tr>
+                        </c:forEach>
+                    </table>
+
+                </div>
+            </c:if>
+
         </div>
     </body>
 </html>
