@@ -75,4 +75,18 @@ public class CartUtilities {
             Logger.getLogger(CartUtilities.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void pendOrder(String order,String account){
+        String sqlCmd = "UPDATE sale_order SET status = 'pending' WHERE order_id = '" + order + "'";
+            try {
+                stmt.executeUpdate(sqlCmd); 
+               sqlCmd = "insert into sale_order(account_account_id) value("+Integer.parseInt(account)+") ";
+               stmt.executeUpdate(sqlCmd);
+
+            } catch (SQLException e) {
+                Logger.getLogger(CartUtilities.class.getName()).log(Level.SEVERE, null, e);
+            }
+        
+        
+    }
 }

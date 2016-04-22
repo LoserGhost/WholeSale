@@ -56,6 +56,10 @@ public class LoginUtilities {
                     return "distributor.jsp";
                 } else if (role.equals("ac")) {
                     return "acm.jsp";
+                } else if (role.equals("web")) {
+                    return "webmaster.jsp";
+                } else if (role.equals("sys")) {
+                    return "system.jsp";
                 }
                 return "main.jsp";
             } else {

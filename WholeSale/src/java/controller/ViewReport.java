@@ -7,63 +7,40 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Account;
-import model.Branch;
-import model.Customer;
-import model.UserUtilities;
 
 /**
  *
  * @author LoserGhost
  */
-@WebServlet(name = "UpdateController", urlPatterns = {"/UpdateController"})
-public class UpdateController extends HttpServlet {
+@WebServlet(name = "ViewReport", urlPatterns = {"/ViewReport"})
+public class ViewReport extends HttpServlet {
 
-    private UserUtilities userUtilities = new UserUtilities();
-    private Account account = new Account();
-    private Customer customer = new Customer();
-    private Branch branch = new Branch();
-    
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        userUtilities.init();
         
+        String id = request.getParameter("id");
+        String who = request.getParameter("who");
         
-        request.setCharacterEncoding("UTF-8");
+        RequestDispatcher pg = request.getRequestDispatcher("viewReport.jsp");
         
-        
-        String payment = request.getParameter("payment");
-        String accountid = (String) request.getSession().getAttribute("accountID");
-        
-        String location = request.getParameter("location");
-        String branchid = request.getParameter("branch");
-        
-        String cusname = request.getParameter("name");
-        String cusid = request.getParameter("cusid");
-        
-        account.setAccount_ID(accountid);
-        account.setPayment(payment);
-        
-        branch.setBranch_Location(location);
-        branch.setBranch_ID(branchid);
-        
-        customer.setCus_Name(cusname);
-        customer.setCus_ID(cusid);
-        
-        userUtilities.updateName(customer);
-        userUtilities.updateLocation(branch);
-        userUtilities.updatePayment(account);
-        
-        response.sendRedirect("paid.jsp");
-        
+        pg.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

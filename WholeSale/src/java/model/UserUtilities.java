@@ -57,7 +57,7 @@ public class UserUtilities {
     }
     
     public void updateLocation(Branch branch) {
-        String sqlCmd = "UPDATE branch SET location = '" + branch.getBranch_Location()
+        String sqlCmd = "UPDATE branch SET branch_location = '" + branch.getBranch_Location()
                 + "' WHERE branch_id = '" + branch.getBranch_ID() + "'";
         try {
             stmt.executeUpdate(sqlCmd);
@@ -68,7 +68,7 @@ public class UserUtilities {
     }
 
     public void updatePayment(Account account) {
-        String sqlCmd = "UPDATE account SET payment = '" + account.getPayment()
+        String sqlCmd = "UPDATE account SET payment_method = '" + account.getPayment()
                 + "' WHERE account_id = '" + account.getAccount_ID() + "'";
         try {
             stmt.executeUpdate(sqlCmd);

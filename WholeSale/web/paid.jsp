@@ -223,7 +223,7 @@
                 
                 
                 
-                <form>
+                <form action="UpdateController">
                     <div class="center2">
                         ชื่อ : <input class="textbox" type="text" name="name" value="${cusname}"/><br/><br/>
                         ที่อยู่ : <br/><br/><textarea name="location" rows="5" cols="20">${location}</textarea><br/><br/>

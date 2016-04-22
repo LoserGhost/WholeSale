@@ -165,9 +165,6 @@
                     <tab></tab> password: <input class="textbox" type="password" name="password"/><br/>
                     <tab class="left"></tab> <input type="submit" value="login"/>
                 </form>
-                <form action="register.jsp">
-                    <tab></tab><input type="submit" value="สมัครสมาชิก" />
-                </form>
 
             </div>
         </div>
