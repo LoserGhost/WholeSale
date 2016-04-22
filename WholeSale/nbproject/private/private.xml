@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/ApproveController.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/LoginController.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/webmaster.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/login/LoginUtilities.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/PaidController.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/viewReport.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/web/viewOrder.jsp</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/ViewOrder.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/ViewController.java</file>
+            <file>file:/D:/GitHub/WholeSale/WholeSale/src/java/controller/ViewCustomer.java</file>
+        </group>
     </open-files>
 </project-private>

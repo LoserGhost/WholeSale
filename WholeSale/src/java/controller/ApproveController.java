@@ -30,6 +30,10 @@ public class ApproveController extends HttpServlet {
         cartUtilities.init();
         
         String order = request.getParameter("order");
+        
+        cartUtilities.approveOrder(order);
+        
+        response.sendRedirect("distributor.jsp?link=view");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

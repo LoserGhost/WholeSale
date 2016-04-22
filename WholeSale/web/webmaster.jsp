@@ -113,7 +113,10 @@
             SELECT report_id,account_id,content  FROM report WHERE receiver LIKE 'WebMaster'
         </sql:query>
 
-
+        <sql:query var="result2" dataSource="wholesale">
+            SELECT account_id, username FROM account
+            WHERE role LIKE 'user'
+        </sql:query>
 
 
 
@@ -135,7 +138,26 @@
 
             <c:if test="${param.link eq 'view'}">
                 <div class="window">
-                    <h2 style="text-align: center;">จัดการผู้ใช้</h2>        
+                    <h2 style="text-align: center;">จัดการผู้ใช้</h2>
+                    <form action="ViewCustomer">
+                    <table border="1" style="margin: auto">
+                        <!-- column headers -->
+                        <tr>
+                            <c:forEach var="columnName" items="${result2.columnNames}">
+                                <th><c:out value="${columnName}"/></th>
+                                </c:forEach>
+                        </tr>
+                        <!-- column data -->
+                        <c:forEach var="row" items="${result2.rows}">
+                            <tr>
+                                <td><c:out value="${row.account_id}"/></td>
+                                <td><c:out value="${row.username}"/></td>
+                                <td><button type="submit" name="account" value="${row.account_id}"/>view</button></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                    </form>
+
                 </div>
             </c:if>
 

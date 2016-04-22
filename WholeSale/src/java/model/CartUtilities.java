@@ -89,4 +89,14 @@ public class CartUtilities {
         
         
     }
+    
+    public void approveOrder(String order){
+        String sqlCmd = "UPDATE sale_order SET status = 'approved' WHERE order_id = '" + order + "'";
+            try {
+                stmt.executeUpdate(sqlCmd); 
+
+            } catch (SQLException e) {
+                Logger.getLogger(CartUtilities.class.getName()).log(Level.SEVERE, null, e);
+            }
+    }
 }

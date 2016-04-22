@@ -131,8 +131,8 @@
             <div class="dropdown">
                 <button class="dropbtn">เมนู</button>
                 <div class="dropdown-content">
-                    <a href="distributor.jsp?link=view" style="background-color: #cccccc">ดูสถานะของผู้สั่งซื้อ</a>
-                    <a href="distributor.jsp?link=report" style="background-color: #f1f1f1">จัดการคำร้อง</a>
+                    <a href="system.jsp?link=view" style="background-color: #cccccc">ดูสถานะของระบบ</a>
+                    <a href="system.jsp?link=report" style="background-color: #f1f1f1">ดูการทำงานของระบบ</a>
                 </div>
             </div>
 
@@ -140,7 +140,7 @@
 
             <c:if test="${param.link eq 'view'}">
                 <div class="window">
-                    <h2 style="text-align: center;">ใบสั่งซื้อ</h2>   
+                    <h2 style="text-align: center;">สถานะของระบบ</h2>   
                     
                 </div>
             </c:if>
@@ -148,28 +148,8 @@
 
             <c:if test="${param.link eq 'report'}">
                 <div class="window">
-                    <h2 style="text-align: center;">คำร้อง</h2>
-                    <form action="ViewReport">
-                        <table border="1" style="margin: auto">
-                            <!-- column headers -->
-                            <tr>
-                                <c:forEach var="columnName" items="${result.columnNames}">
-                                    <th><c:out value="${columnName}"/></th>
-                                    </c:forEach>
-                            </tr>
-                            <!-- column data -->
-                            <c:forEach var="row" items="${result.rows}">
-                                <tr>
-                                    <td><c:out value="${row.report_id}"/></td>
-                                    <td><c:out value="${row.account_id}"/></td>
-                                    <td><c:out value="${row.content}"/></td>
-                                    <td><button type="submit" name='id' value="${row.report_id}">view</button></td>
-                                </tr>
-
-                                <input type="hidden" name="who" value="dist"/>
-                            </c:forEach>
-                        </table>
-                    </form>
+                    <h2 style="text-align: center;">การทำงานของระบบ</h2>
+                    
                 </div>
             </c:if>
 

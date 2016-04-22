@@ -38,7 +38,7 @@
         <c:set var="total" value="0"/>
 
         <h1>ใบสั่งซื้อหมายเลข : ${param.id}</h1>
-        
+
         รหัสผู้สั่ง : ${cus_id}<br/>
         ชื่อผู้สั่ง : ${cus_name}<br/>
         ชื่อร้านค้า : ${branch_name}<br/>
@@ -72,13 +72,14 @@
             <tbody>
             </tbody>
         </table><br/>
-        
+
 
         <c:if test="${param.who eq 'dist'}">
-            <form ApproveController>
-                <input type="hidden" name="order" value="${param.id}"
-                <button type="submit" >GO BACK</button>>
-            </form>
+            <form action="ApproveController">
+                <input type="hidden" name="order" value="${param.id}" />
+                <button type="submit" value="num" name = num>approve</button>
+            </form><br/>
+            <a href='distributor.jsp?link=view' >GO BACK</a>
         </c:if>
 
         <c:if test="${param.who eq 'acm'}">
